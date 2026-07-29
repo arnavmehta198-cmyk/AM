@@ -84,7 +84,8 @@ body {
 
 #hero,
 #profile,
-#contact2 {
+#contact2,
+#contact-page2-root {
   scroll-margin-top: 44px;
 }
 
@@ -350,7 +351,8 @@ body {
 }
 
 .contact-page2-root {
-  min-height: 1px;
+  min-height: 100vh;
+  scroll-margin-top: 44px;
 }
 
 /* GradientStrips background root */
@@ -438,6 +440,13 @@ body {
   width: clamp(180px, 22vw, 360px);
   height: clamp(180px, 22vw, 360px);
   pointer-events: none;
+  position: relative;
+}
+
+.marquee-cube-canvas-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 .marquee {

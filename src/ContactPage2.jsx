@@ -1,8 +1,7 @@
-import React, { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import Marquee from './Marquee'
 import ErrorBoundary from './ErrorBoundary'
-
-const MarqueeCube = lazy(() => import('./MarqueeCube'))
+import MarqueeCube from './MarqueeCube'
 
 const CARD_BASE_TILT = { rx: 14, ry: -22, rz: 2 }
 const CARD_MAX_PARALLAX = 9
@@ -252,9 +251,7 @@ export default function ContactPage2() {
         <Marquee text="Stay in touch — Start your project — Say Hello" repeat={3} duration={44} />
         <div className="contact2-cube-layer" aria-hidden="true">
           <ErrorBoundary fallback={null}>
-            <Suspense fallback={null}>
-              <MarqueeCube />
-            </Suspense>
+            <MarqueeCube />
           </ErrorBoundary>
         </div>
       </div>
