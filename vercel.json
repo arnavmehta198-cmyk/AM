@@ -60,7 +60,7 @@
       ]
     },
     {
-      "source": "/((?!assets|fonts|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\.txt).*)",
+      "source": "/((?!assets|fonts|favicon\\.ico|robots\\.txt|sitemap\\.xml|.*\\.txt|admin).*)",
       "headers": [
         { "key": "Cache-Control", "value": "no-store, max-age=0, must-revalidate" }
       ]
