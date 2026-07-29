@@ -328,8 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
       introTweens.push(
         gsap.from(heroTitle, {
           opacity: 0,
-          filter: 'blur(12px)',
-          duration: 1.1,
+          filter: 'blur(8px)',
+          duration: 0.55,
           ease: 'power2.out',
         })
       );
@@ -338,10 +338,10 @@ document.addEventListener('DOMContentLoaded', () => {
     introTweens.push(
       gsap.from(items, {
         opacity: 0,
-        filter: 'blur(18px)',
-        duration: 1.1,
+        filter: 'blur(10px)',
+        duration: 0.55,
         ease: 'power2.out',
-        stagger: 0.05,
+        stagger: 0.03,
       })
     );
   }
@@ -402,7 +402,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupDots() {
       const rect = heroSticky.getBoundingClientRect();
       canvasRect = { width: rect.width, height: rect.height };
-      const dpr = window.devicePixelRatio || 1;
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       heroCanvas.width = Math.floor(rect.width * dpr);
       heroCanvas.height = Math.floor(rect.height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);

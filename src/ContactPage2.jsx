@@ -1,7 +1,8 @@
-import React, { Suspense, useCallback, useEffect, useRef, useState } from 'react'
+import React, { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react'
 import Marquee from './Marquee'
 import ErrorBoundary from './ErrorBoundary'
-import MarqueeCube from './MarqueeCube'
+
+const MarqueeCube = lazy(() => import('./MarqueeCube'))
 
 const CARD_BASE_TILT = { rx: 14, ry: -22, rz: 2 }
 const CARD_MAX_PARALLAX = 9
