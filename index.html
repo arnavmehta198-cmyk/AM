@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Arnav Mehta</title>
+  <title>Arnav Mehta — Creative Technologist</title>
   <meta
     name="description"
     content="Arnav Mehta — creative technologist building AI-powered websites and immersive digital experiences."
@@ -50,14 +50,42 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Arnav Mehta",
-      "url": "https://www.arnavmehta.org/",
-      "jobTitle": "Creative Technologist",
-      "description": "Creative technologist crafting immersive digital experiences and AI-powered websites.",
-      "sameAs": [
-        "https://www.linkedin.com/in/arnav-mehta-0b495736a/",
-        "https://github.com/arnavmehta198-cmyk"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://www.arnavmehta.org/#person",
+          "name": "Arnav Mehta",
+          "givenName": "Arnav",
+          "familyName": "Mehta",
+          "url": "https://www.arnavmehta.org/",
+          "jobTitle": "Creative Technologist",
+          "description": "Creative technologist crafting immersive digital experiences and AI-powered websites.",
+          "knowsAbout": ["Web design", "AI-powered websites", "React", "Three.js", "Interactive 3D experiences"],
+          "mainEntityOfPage": { "@id": "https://www.arnavmehta.org/#webpage" },
+          "sameAs": [
+            "https://www.linkedin.com/in/arnav-mehta-0b495736a/",
+            "https://github.com/arnavmehta198-cmyk"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.arnavmehta.org/#website",
+          "name": "Arnav Mehta",
+          "alternateName": "arnavmehta.org",
+          "url": "https://www.arnavmehta.org/",
+          "publisher": { "@id": "https://www.arnavmehta.org/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://www.arnavmehta.org/#webpage",
+          "url": "https://www.arnavmehta.org/",
+          "name": "Arnav Mehta — Creative Technologist",
+          "isPartOf": { "@id": "https://www.arnavmehta.org/#website" },
+          "about": { "@id": "https://www.arnavmehta.org/#person" },
+          "mainEntity": { "@id": "https://www.arnavmehta.org/#person" },
+          "inLanguage": "en"
+        }
       ]
     }
   </script>
@@ -103,7 +131,9 @@
     <div class="profile-container">
       <h2 class="profile-headline" id="glitchText">Arnav Mehta</h2>
       <p class="profile-body">
-        Creative technologist crafting immersive digital experiences.
+        Arnav Mehta is a creative technologist who designs and builds
+        AI-powered websites and immersive 3D digital experiences with React,
+        Three.js, and modern web tools.
       </p>
     </div>
   </section>
