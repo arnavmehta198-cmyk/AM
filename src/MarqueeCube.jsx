@@ -55,11 +55,15 @@ function RotatingCube() {
 }
 
 export default function MarqueeCube() {
+  const isPhone =
+    typeof window !== 'undefined' &&
+    window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
+
   return (
     <div className="marquee-cube-canvas-wrap">
       <Canvas
-        dpr={[1, 1.75]}
-        gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
+        dpr={isPhone ? [1, 1.25] : [1, 1.75]}
+        gl={{ alpha: true, antialias: !isPhone, powerPreference: isPhone ? 'low-power' : 'high-performance' }}
         camera={{ position: [0, 0, 4.2], fov: 38 }}
       >
         <ambientLight intensity={0.55} />

@@ -9,10 +9,13 @@ html {
   background: #f5f5f5;
   color: #111;
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
 }
 
@@ -24,7 +27,8 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 44px;
+  height: calc(44px + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   z-index: 1000;
   background: rgba(0, 0, 0, 0.68);
   backdrop-filter: saturate(180%) blur(20px);
@@ -86,7 +90,7 @@ body {
 #profile,
 #contact2,
 #contact-page2-root {
-  scroll-margin-top: 44px;
+  scroll-margin-top: calc(44px + env(safe-area-inset-top, 0px));
 }
 
 @media (max-width: 640px) {
@@ -117,6 +121,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   display: flex;
   align-items: center;
@@ -513,23 +518,6 @@ body {
   padding: 0 2.5rem;
 }
 
-@media (max-width: 768px) {
-  .contact2-marquee-band {
-    min-height: 50vh;
-    padding: 4rem 0;
-  }
-
-  .marquee-item {
-    font-size: clamp(2.4rem, 13vw, 4.75rem);
-    padding: 0 1.5rem;
-  }
-
-  .marquee-cube-canvas-wrap {
-    width: clamp(120px, 30vw, 220px);
-    height: clamp(120px, 30vw, 220px);
-  }
-}
-
 /* Contact Page 2 — 3D interactive business card
    ========================================================================== */
 
@@ -801,11 +789,23 @@ body {
   }
 
   .bizcard-flip {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
   }
 
   .bizcard-value {
-    font-size: clamp(1rem, 5vw, 1.4rem);
+    font-size: clamp(1rem, 5vw, 1.3rem);
+  }
+
+  .contact2-cta {
+    justify-content: stretch;
+    padding: 0.75rem 1rem calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .talk-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 1.35rem;
+    min-height: 48px;
   }
 }
 
@@ -891,13 +891,6 @@ body {
   }
 }
 
-@media (max-width: 640px) {
-  .contact2-cta {
-    justify-content: center;
-    padding: 1rem 1.5rem 4rem;
-  }
-}
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -915,51 +908,175 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 0 1.5rem;
+    height: 100vh;
+    height: 100dvh;
+    padding: calc(56px + env(safe-area-inset-top, 0px)) 1.25rem 2rem;
+    gap: 1.25rem;
   }
 
   .hero-left {
     margin-right: 0;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
     max-width: 100%;
+    width: 100%;
   }
 
   .hero-title {
-    font-size: clamp(1.6rem, 8vw, 2.6rem);
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
   }
 
   .hero-right {
     height: auto;
-    min-height: auto;
+    min-height: 0;
     width: 100%;
     min-width: auto;
     overflow: hidden;
+    flex: 1;
+    align-items: flex-start;
   }
 
   .hero-list {
-    gap: 0.75rem;
+    gap: 0.65rem;
     width: 100%;
   }
 
   .hero-item {
-    font-size: clamp(1.3rem, 7vw, 2.2rem);
+    font-size: clamp(1.2rem, 6.5vw, 1.85rem);
+    white-space: normal;
+    max-width: 100%;
+    line-height: 1.2;
   }
 
   .highlight-box {
     width: 100%;
-    height: 4rem;
+    height: 3.5rem;
+  }
+
+  .scroll-spacer {
+    height: 420vh;
   }
 
   .profile {
-    padding: 4rem 1.5rem;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 5rem 1.25rem calc(3rem + env(safe-area-inset-bottom, 0px));
   }
 
   .profile-headline {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(2.1rem, 11vw, 3.2rem);
+  }
+
+  .profile-body {
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .contact-page2-root {
+    min-height: auto;
+    scroll-margin-top: calc(44px + env(safe-area-inset-top, 0px));
+  }
+
+  .contact2-marquee-band {
+    min-height: 42vh;
+    padding: 3.5rem 0;
+  }
+
+  .marquee-item {
+    font-size: clamp(2rem, 12vw, 3.5rem);
+    padding: 0 1.15rem;
+  }
+
+  .marquee-cube-canvas-wrap {
+    width: clamp(110px, 34vw, 180px);
+    height: clamp(110px, 34vw, 180px);
+  }
+
+  .bizcard-section {
+    padding: 1.5rem 1rem calc(3rem + env(safe-area-inset-bottom, 0px));
+    gap: 1.15rem;
+  }
+
+  .bizcard-tilt {
+    width: min(100%, 420px);
+  }
+
+  .bizcard-flip {
+    aspect-ratio: 3 / 4;
+  }
+
+  .bizcard-top-row {
+    padding: 1.15rem 1.15rem 0;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .bizcard-hero {
+    margin: 1rem 1.15rem;
+    padding: 0.95rem 1rem;
+  }
+
+  .bizcard-value {
+    font-size: clamp(1.05rem, 5.2vw, 1.35rem);
+  }
+
+  .bizcard-footer {
+    margin: 0 1.15rem 1.15rem;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .bizcard-footer-item {
+    border-left: none;
+    padding: 0;
+  }
+
+  .bizcard-footer-value {
+    font-size: 0.85rem;
   }
 
   .code-bg-pre {
     padding: 1.5rem 1rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .site-nav-links {
+    gap: 0.9rem;
+  }
+
+  .site-nav-links a {
+    font-size: 0.7rem;
+  }
+
+  .hero-sticky {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-title {
+    font-size: clamp(1.55rem, 8.5vw, 2.1rem);
+  }
+
+  .hero-item {
+    font-size: clamp(1.1rem, 6vw, 1.45rem);
+  }
+
+  .scroll-spacer {
+    height: 320vh;
+  }
+
+  .marquee-item {
+    font-size: clamp(1.7rem, 11vw, 2.6rem);
+  }
+
+  .bizcard-tags {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .bizcard-tag {
+    font-size: 0.55rem;
+    padding: 0.28rem 0.55rem;
   }
 }
 
@@ -1207,23 +1324,43 @@ body.start-page-body {
 }
 
 @media (max-width: 640px) {
+  .start-page {
+    min-height: 100dvh;
+  }
+
   .start-main {
-    padding: 6rem 1.5rem 8rem;
-    gap: 1.75rem;
+    justify-content: flex-start;
+    padding: 5.5rem 1.15rem calc(7rem + env(safe-area-inset-bottom, 0px));
+    gap: 1.5rem;
+  }
+
+  .start-heading {
+    font-size: clamp(1.55rem, 7.5vw, 2.1rem);
   }
 
   .start-fields {
     flex-direction: column;
   }
 
+  .start-field-card {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 1.1rem 1.2rem;
+  }
+
+  .start-field-card textarea {
+    min-height: 8rem;
+  }
+
   .start-logo {
-    top: 1.5rem;
-    left: 1.5rem;
+    top: calc(1.15rem + env(safe-area-inset-top, 0px));
+    left: 1.15rem;
   }
 
   .start-submit {
-    right: 1.25rem;
-    bottom: 1.25rem;
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+    padding: 0.85rem 1.2rem;
   }
 }
 
@@ -1503,10 +1640,14 @@ body.start-page-body {
 
 @media (max-width: 640px) {
   .admin-login-card {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
   }
 
   .admin-dashboard {
-    padding: 2.5rem 1.25rem 4rem;
+    padding: 2rem 1rem calc(3.5rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .admin-login-wrap {
+    padding: calc(2rem + env(safe-area-inset-top, 0px)) 1rem calc(2rem + env(safe-area-inset-bottom, 0px));
   }
 }

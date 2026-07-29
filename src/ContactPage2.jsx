@@ -4,7 +4,20 @@ import ErrorBoundary from './ErrorBoundary'
 import MarqueeCube from './MarqueeCube'
 
 const CARD_BASE_TILT = { rx: 14, ry: -22, rz: 2 }
+const CARD_FLAT_TILT = { rx: 0, ry: 0, rz: 0 }
 const CARD_MAX_PARALLAX = 9
+
+function usePhoneLayout() {
+  const [isPhone, setIsPhone] = useState(false)
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px), (pointer: coarse)')
+    const update = () => setIsPhone(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+  return isPhone
+}
 
 function useReducedMotionPref() {
   const [reduced, setReduced] = useState(false)
@@ -82,14 +95,21 @@ function TalkToUsButton() {
 
 function BusinessCard() {
   const tiltRef = useRef(null)
-  const [tilt, setTilt] = useState(CARD_BASE_TILT)
+  const isPhone = usePhoneLayout()
+  const baseTilt = isPhone ? CARD_FLAT_TILT : CARD_BASE_TILT
+  const [tilt, setTilt] = useState(baseTilt)
   const [tracking, setTracking] = useState(false)
   const [flipped, setFlipped] = useState(false)
   const reducedMotion = useReducedMotionPref()
 
+  useEffect(() => {
+    setTilt(baseTilt)
+    setTracking(false)
+  }, [baseTilt])
+
   const handleMouseMove = useCallback(
     (event) => {
-      if (reducedMotion || !tiltRef.current) return
+      if (isPhone || reducedMotion || !tiltRef.current) return
       const rect = tiltRef.current.getBoundingClientRect()
       const px = (event.clientX - rect.left) / rect.width
       const py = (event.clientY - rect.top) / rect.height
@@ -97,18 +117,18 @@ function BusinessCard() {
       const rx = CARD_BASE_TILT.rx - (py - 0.5) * CARD_MAX_PARALLAX * 2
       setTilt({ rx, ry, rz: CARD_BASE_TILT.rz })
     },
-    [reducedMotion]
+    [isPhone, reducedMotion]
   )
 
   const handleMouseEnter = useCallback(() => {
-    if (reducedMotion) return
+    if (isPhone || reducedMotion) return
     setTracking(true)
-  }, [reducedMotion])
+  }, [isPhone, reducedMotion])
 
   const handleMouseLeave = useCallback(() => {
     setTracking(false)
-    setTilt(CARD_BASE_TILT)
-  }, [])
+    setTilt(baseTilt)
+  }, [baseTilt])
 
   const handleFlip = useCallback(() => {
     setFlipped((prev) => !prev)
@@ -146,7 +166,7 @@ function BusinessCard() {
             role="button"
             tabIndex={0}
             aria-pressed={flipped}
-            aria-label="Business card. Click to flip between email and phone."
+            aria-label="Business card. Tap to flip between email and phone."
           >
             <div className="bizcard-face bizcard-face--front">
               <svg className="bizcard-bg-icon bizcard-bg-icon--globe" viewBox="0 0 140 140" aria-hidden="true">
