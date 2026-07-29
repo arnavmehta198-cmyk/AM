@@ -4,11 +4,14 @@ import { fileURLToPath, URL } from 'url'
 
 function securityHeadersPlugin() {
   const headers = {
+    'Content-Security-Policy':
+      "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob:; connect-src 'self' https://*.supabase.co ws: wss:; worker-src 'self' blob:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';",
     'X-Frame-Options': 'DENY',
     'X-Content-Type-Options': 'nosniff',
+    'X-XSS-Protection': '1; mode=block',
     'Referrer-Policy': 'strict-origin-when-cross-origin',
     'Cross-Origin-Opener-Policy': 'same-origin',
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
   }
 
