@@ -7,9 +7,8 @@ const MAX_ROWS = 14
 const RIPPLE_INTERVAL_MS = 3200
 const RIPPLE_SPEED_PX_PER_SEC = 950
 
-function getCenter(element) {
-  const { left, top, width, height } = element.getBoundingClientRect()
-  return { x: left + width / 2, y: top + height / 2 }
+function getCenterFromRect(rect) {
+  return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 }
 }
 
 // Physical-stagger grid ripple, based on https://motion.dev/examples/js-staggered-grid
@@ -54,11 +53,13 @@ export default function StaggeredGrid() {
       const cells = cellsRef.current
       if (!cells.length) return
 
+      // Batch layout reads once to avoid forced reflow per cell.
+      const rects = cells.map((cell) => cell.getBoundingClientRect())
       const originIndex = Math.floor(Math.random() * cells.length)
-      const originCenter = getCenter(cells[originIndex])
+      const originCenter = getCenterFromRect(rects[originIndex])
 
-      cells.forEach((cell) => {
-        const center = getCenter(cell)
+      cells.forEach((cell, index) => {
+        const center = getCenterFromRect(rects[index])
         const dx = center.x - originCenter.x
         const dy = center.y - originCenter.y
         const distance = Math.sqrt(dx * dx + dy * dy)
