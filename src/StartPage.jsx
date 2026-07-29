@@ -121,7 +121,7 @@ function DoneStep({ firstName, reducedMotion }) {
         />
       </h1>
 
-      <a href="index.html" className={`start-submit${revealClass}`}>
+      <a href="/" className={`start-submit${revealClass}`}>
         <span>Back to homepage</span>
         <span className="start-submit-arrow" aria-hidden="true">→</span>
       </a>
@@ -194,7 +194,7 @@ export default function StartPage() {
 
   return (
     <div className="start-page">
-      <a href="index.html" className="start-logo" aria-label="Arnav Mehta — Home">
+      <a href="/" className="start-logo" aria-label="Arnav Mehta — Home">
         AM
       </a>
 

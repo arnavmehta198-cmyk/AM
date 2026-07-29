@@ -81,7 +81,7 @@ function TalkToUsButton() {
     <div className="contact2-cta">
       <a
         ref={ctaRef}
-        href="start.html"
+        href="/start"
         className={`talk-cta${revealed ? ' is-revealed' : ''}${reducedMotion ? ' no-motion' : ''}`}
       >
         <span className="talk-cta-label">

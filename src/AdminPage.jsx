@@ -72,7 +72,7 @@ function AdminLogin({ onSuccess }) {
           {loading ? 'Signing in…' : 'Sign in'}
         </button>
 
-        <a href="index.html" className="admin-back-link">
+        <a href="/" className="admin-back-link">
           ← Back to site
         </a>
       </form>
