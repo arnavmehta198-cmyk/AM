@@ -2,7 +2,14 @@
 // form and the admin dashboard. No secrets live here — the admin password
 // check and all database access happen server-side inside the functions.
 
-const FUNCTIONS_BASE = 'https://usjsevhrixjyfexyglmf.supabase.co/functions/v1'
+const FUNCTIONS_BASE = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL
+
+if (!FUNCTIONS_BASE) {
+  console.error(
+    'Missing VITE_SUPABASE_FUNCTIONS_URL. Copy .env.example to .env and set your Supabase functions URL.'
+  )
+}
+
 export const ADMIN_TOKEN_KEY = 'am_admin_token'
 
 async function parseJsonSafe(response) {
